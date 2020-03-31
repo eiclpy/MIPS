@@ -1,0 +1,2 @@
+# 简单MIPS微处理器Verilog实现
+支持指令: sll,srl,sllv,srlv,jr,mfhi,mthi,mflo,mtlo,mult,multu,div,divu,add,addu,sub,subu,and,or,xor,nor,slt,sltu,j,jal,beq,bne,addi,addiu,slti,sltiu,andi,ori,xori,lui,lb,lh,lw,lbu,lhu,sb,sh,sw
