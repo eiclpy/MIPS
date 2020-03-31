@@ -1,0 +1,20 @@
+begin:
+li $8,233333
+li $9,-666666
+mult $8,$9
+mfhi $10
+mflo $10
+multu $8,$9
+mfhi $10
+mflo $10
+div $8,$9
+mfhi $10
+mflo $10
+divu $8,$9
+mfhi $10
+mflo $10
+mthi $8
+mtlo $9
+mfhi $10
+mflo $10
+j begin
