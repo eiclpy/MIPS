@@ -59,9 +59,9 @@ module alu(
             4'b1001://srl
                 Resault = SrcB>>Shmat;
             4'b1010://sllv
-                Resault = SrcA<<SrcB;
+                Resault = SrcB<<SrcA;
             4'b1011://srlv
-                Resault = SrcA>>SrcB;
+                Resault = SrcB>>SrcA;
             4'b1100://lui
                 Resault = {SrcB[15:0], 16'b0};
             4'b1110://xor
