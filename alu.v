@@ -31,7 +31,7 @@ module alu(
     output Overflow
     );
     wire signed [31:0] SrcASgn, SrcBSgn;
-    reg [32:0] Resault;
+    reg [32:0] Result;
 
     assign SrcASgn = SrcA;
     assign SrcBSgn = SrcB;
@@ -39,40 +39,40 @@ module alu(
     begin
         case(ALUCtrl)
             4'b0000://and
-                Resault = SrcA&SrcB;
+                Result = SrcA&SrcB;
             4'b0001://or
-                Resault = SrcA|SrcB;
+                Result = SrcA|SrcB;
             4'b0010://add
-                Resault = SrcASgn+SrcBSgn;
+                Result = SrcASgn+SrcBSgn;
             4'b0011://addu
-                Resault = SrcA+SrcB;
+                Result = SrcA+SrcB;
             4'b0100://sub
-                Resault = SrcASgn-SrcBSgn;
+                Result = SrcASgn-SrcBSgn;
             4'b0101://subu
-                Resault = SrcA-SrcB;
+                Result = SrcA-SrcB;
             4'b0110://slt
-                Resault = (SrcASgn<SrcBSgn)?1:0;
+                Result = (SrcASgn<SrcBSgn)?1:0;
             4'b0111://sltu
-                Resault = (SrcA<SrcB)?1:0;
+                Result = (SrcA<SrcB)?1:0;
             4'b1000://sll
-                Resault = SrcB<<Shmat;
+                Result = SrcB<<Shmat;
             4'b1001://srl
-                Resault = SrcB>>Shmat;
+                Result = SrcB>>Shmat;
             4'b1010://sllv
-                Resault = SrcB<<SrcA;
+                Result = SrcB<<SrcA;
             4'b1011://srlv
-                Resault = SrcB>>SrcA;
+                Result = SrcB>>SrcA;
             4'b1100://lui
-                Resault = {SrcB[15:0], 16'b0};
+                Result = {SrcB[15:0], 16'b0};
             4'b1110://xor
-                Resault = SrcA^SrcB;
+                Result = SrcA^SrcB;
             4'b1111://nor
-                Resault = ~(SrcA|SrcB);
+                Result = ~(SrcA|SrcB);
             default:
-                Resault = 0;
+                Result = 0;
         endcase
     end
-    assign ALURes = Resault[31:0];
-    assign Zero = Resault==0?1:0;
-    assign Overflow = Resault[32];
+    assign ALURes = Result[31:0];
+    assign Zero = Result==0?1:0;
+    assign Overflow = Result[32];
 endmodule
