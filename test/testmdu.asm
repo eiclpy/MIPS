@@ -1,16 +1,16 @@
 begin:
-li $8,233333
-li $9,-666666
+addi $8,$0,2
+addi $9,$0,-8
 mult $8,$9
 mfhi $10
 mflo $10
 multu $8,$9
 mfhi $10
 mflo $10
-div $8,$9
+div $9,$8
 mfhi $10
 mflo $10
-divu $8,$9
+divu $9,$8
 mfhi $10
 mflo $10
 mthi $8

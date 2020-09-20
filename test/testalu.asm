@@ -1,0 +1,20 @@
+begin:
+addi $8,$0,-1
+addi $9,$0,1
+and $10,$8,$9
+or $10,$8,$9
+add $10,$8,$9
+addu $10,$8,$9
+sub $10,$8,$9
+subu $10,$8,$9
+slt $10,$8,$9
+sltu $10,$8,$9
+sll $10,$8,2
+srl $10,$8,2
+sllv $10,$9,$8
+srlv $10,$9,$8
+xor $10,$8,$9
+nor $10,$8,$9
+lui $10,0xffff
+ori $10,$10,0xffff
+j begin

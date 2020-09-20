@@ -39,35 +39,35 @@ module alu(
     begin
         case(ALUCtrl)
             4'b0000://and
-                Result = SrcA&SrcB;
+                Result <= SrcA&SrcB;
             4'b0001://or
-                Result = SrcA|SrcB;
+                Result <= SrcA|SrcB;
             4'b0010://add
-                Result = SrcASgn+SrcBSgn;
+                Result <= SrcASgn+SrcBSgn;
             4'b0011://addu
-                Result = SrcA+SrcB;
+                Result <= SrcA+SrcB;
             4'b0100://sub
-                Result = SrcASgn-SrcBSgn;
+                Result <= SrcASgn-SrcBSgn;
             4'b0101://subu
-                Result = SrcA-SrcB;
+                Result <= SrcA-SrcB;
             4'b0110://slt
-                Result = (SrcASgn<SrcBSgn)?1:0;
+                Result <= (SrcASgn<SrcBSgn)?1:0;
             4'b0111://sltu
-                Result = (SrcA<SrcB)?1:0;
+                Result <= (SrcA<SrcB)?1:0;
             4'b1000://sll
-                Result = SrcB<<Shmat;
+                Result <= SrcB<<Shmat;
             4'b1001://srl
-                Result = SrcB>>Shmat;
+                Result <= SrcB>>Shmat;
             4'b1010://sllv
-                Result = SrcB<<SrcA;
+                Result <= SrcB<<SrcA[4:0];
             4'b1011://srlv
-                Result = SrcB>>SrcA;
+                Result <= SrcB>>SrcA[4:0];
             4'b1100://lui
-                Result = {SrcB[15:0], 16'b0};
+                Result <= {SrcB[15:0], 16'b0};
             4'b1110://xor
-                Result = SrcA^SrcB;
+                Result <= SrcA^SrcB;
             4'b1111://nor
-                Result = ~(SrcA|SrcB);
+                Result <= ~(SrcA|SrcB);
             default:
                 Result = 0;
         endcase

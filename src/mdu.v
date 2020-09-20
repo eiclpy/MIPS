@@ -28,19 +28,25 @@ module mdu(
     output [31:0] MDURes
     );
     wire signed [31:0] SrcASgn,SrcBSgn;
-    reg [63:0] Resault;
+    reg [63:0] Result;
     assign SrcASgn=SrcA;
     assign SrcBSgn=SrcB;
     always @(posedge clk)
         case(MDUCtrl)
-            3'b000:Resault=SrcASgn*SrcBSgn;//mult
-            3'b001:Resault=SrcA*SrcB;//multu
-            3'b010:Resault=SrcASgn/SrcBSgn;//div
-            3'b011:Resault=SrcA/SrcB;//divu
-            // 3'b100:MDURes=Resault[63:32];//mfhi
-            3'b101:Resault[63:32]=SrcA;//mthi
-            // 3'b110:MDURes=Resault[31:0];//mflo
-            3'b111:Resault[31:0]=SrcA;//mtlo
+            3'b000:Result<=SrcASgn*SrcBSgn;//mult
+            3'b001:Result<=SrcA*SrcB;//multu
+            3'b010:begin
+                Result[31:0]<=SrcASgn/SrcBSgn;//div
+                Result[63:32]<=SrcASgn%SrcBSgn;
+            end
+            3'b011:begin
+                Result[31:0]<=SrcA/SrcB;//divu
+                Result[63:32]<=SrcA%SrcB;
+            end
+            // 3'b100:MDURes=Result[63:32];//mfhi
+            3'b101:Result[63:32]<=SrcA;//mthi
+            // 3'b110:MDURes=Result[31:0];//mflo
+            3'b111:Result[31:0]<=SrcA;//mtlo
         endcase
-    assign MDURes=MDUCtrl[1]?Resault[31:0]:Resault[63:32];
+    assign MDURes=MDUCtrl[1]?Result[31:0]:Result[63:32];
 endmodule
